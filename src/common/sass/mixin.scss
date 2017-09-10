@@ -1,0 +1,85 @@
+@function unit($value) {//使用函数变量单位
+  @return $value/40;
+}
+@mixin font($value){//定义字体
+  font-size: ($value/40);
+}
+@mixin width($value){//定义宽度
+  width: ($value/40);
+}
+@mixin height($value){//定义高度
+  height: ($value/40);
+}
+@mixin line-height($value){//定义行高
+  line-height: ($value/40);
+}
+@mixin padding($t:0,$r:0,$b:0,$l:0){//定义padding
+  padding: ($t/40) ($r/40) ($b/40) ($l/40);
+}
+@mixin margin($t:0,$r:0,$b:0,$l:0){//定义margin
+  margin: ($t/40) ($r/40) ($b/40) ($l/40);
+}
+
+$color333: #333;
+$color666: #666;
+$color999: #999;
+$coloraaa: #aaa;
+$colorbbb: #bbb;
+$colorccc: #ccc;
+
+$LightBlue: #58B7FF;
+$Blue: #20A0FF;
+$DarkBlue: #1D8CE0;
+$Success: #13CE66;
+$Warning: #F7BA2A;
+$Danger: #FF4949;
+$Silver: #8492A6;
+$DarkWhite: #F9FAFC;
+
+
+
+@mixin bg-image($url){//设置图标
+  background-image: url($url + "@2x.png");
+  @media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3){
+    background-image: url($url + "@3x.png");
+  }
+}
+
+@mixin clearfix(){//清除浮动
+  &:after{
+    display: block;
+    content: "";
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+  }
+}
+
+@mixin wordbreak() {//文本自动换行
+  word-wrap: break-word;
+  word-break:break-all;
+}
+
+@mixin defaultlabel() {//设置如表单元素可编辑样式
+  appearance: normal;
+}
+
+@mixin textoverflow() {//单行文本缩略
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow:hidden;
+}
+
+%centerblock{//设置垂直居中
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
