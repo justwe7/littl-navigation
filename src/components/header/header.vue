@@ -3,12 +3,25 @@
     <el-row tag="section" class="header">
       <el-col :span="4"><a class="logo" href="###"></a></el-col>
       <el-col :span="14" class="today">
-        <el-col :span="10">
-          北京
-          2017年12月7日
+        <el-col :span="8" class="day">
+          <span class="addr">
+            <span>北京</span>
+            <span>
+              <a href="###">切换</a>
+              <!--<my-address></my-address>-->
+            </span>
+          </span>
+          <time class="date">
+            <span>2017年12月7日</span>
+            <span>星期日</span>
+          </time>
         </el-col>
-        <el-col :span="12" tag="ul">
-          <el-col :key="$index" :span="8" tag="li" v-for="(item,$index) in weather">{{item.cond.txt_d}}</el-col>
+        <el-col :span="14" tag="ul" class="weather_list">
+          <el-col :key="$index" :span="8" tag="li" v-for="(item,$index) in weather">
+            {{item.cond.txt_d}}
+            <img src="https://cdn.heweather.com/cond_icon/100.png" alt="">
+            <!--{{item.cond.code_d}}https://cdn.heweather.com/cond_icon/100.png-->
+          </el-col>
           <!--<el-col :span="8" tag="li">晴天</el-col>-->
           <!--<el-col :span="8" tag="li">晴天</el-col>-->
           <!--<el-col :span="8" tag="li">晴天</el-col>-->
@@ -30,6 +43,7 @@
 </template>
 
 <script>
+  import myAddress from "../header-address/header-address.vue";
 const ERR_OK = 200;
 export default {
   name: 'hello',
@@ -38,6 +52,9 @@ export default {
       activeIndex2: '1',
       weather: []
     }
+  },
+  methods: {
+
   },
   beforeCreate(){
 
@@ -65,7 +82,7 @@ export default {
         }
       });
     }).then(function(ev){//和风天气获取天气信息
-      self.$axios.get('https://free-api.heweather.com/v5/forecast?city=%E5%8C%97%E4%BA%AC&key=1d9500c5813f44a6a7f53128faad45ed').then((response) => {
+      self.$axios.get('https://free-api.heweather.com/v5/forecast?city=东城区&key=1d9500c5813f44a6a7f53128faad45ed').then((response) => {
         console.log(response);
         let data = response;
         if (data.status === ERR_OK){
@@ -84,30 +101,63 @@ export default {
           console.log(data.data.HeWeather5);
         }
     });*/
+  },
+  components: {
+    myAddress
   }
 }
 </script>
 
 <style scoped lang="scss" rel="stylesheet/scss">
   @import "../../common/sass/mixin";
-.container{
-  background-color: $DarkWhite;
-  .header{
-    width: 1200px;
-    height: 80px;
-    @extend %centerblock;
-    .el-menu{
-      background-color: inherit;
+  .container {
+    background-color: $DarkWhite;
+    .header {
+      width: 1200px;
+      height: 80px;
+      @extend %centerblock;
+      .el-menu {
+        background-color: inherit;
+      }
+    }
+    .logo {
+      display: block;
+      width: 200px;
+      height: 84px;
+      background: url("./images.png") no-repeat center;
+    }
+    .today {
+      .day {
+        display: table;
+        .addr {
+          width: 100%;
+          display: table-row;
+          height: 40px;
+          span {
+            vertical-align: middle;
+            display: table-cell;
+          }
+        }
+        .date {
+          width: 100%;
+          display: table-row;
+          height: 40px;
+          span {
+            vertical-align: middle;
+            display: table-cell;
+          }
+        }
+      }
+    }
+    .weather_list{
+      display: table;
+      li{
+        display: table-cell;
+        height: 80px;
+        img{
+          width: 50px;
+        }
+      }
     }
   }
-  .logo{
-    display: block;
-    width: 200px;
-    height: 84px;
-    background: url("./images.png") no-repeat center;
-  }
-  .today{
-
-  }
-}
 </style>
