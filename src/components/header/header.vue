@@ -168,7 +168,7 @@
 <style scoped lang="scss" rel="stylesheet/scss">
   @import "../../common/sass/mixin";
   .container {
-    background-color: $DarkWhite;
+    //background-color: $DarkWhite;
     .header {
       width: 1200px;
       height: 80px;
