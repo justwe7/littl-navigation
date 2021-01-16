@@ -27,7 +27,7 @@
     "jquery": "^3.5.1",
     "request": "^2.88.2",
     "sha1": "^1.1.1",
-    "urijs": "^1.19.3",
+    "urijs": "^1.19.4",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
