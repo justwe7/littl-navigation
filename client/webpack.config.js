@@ -1,18 +1,19 @@
 const path = require('path')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+const pord = process.env.NODE_ENV === 'production'
 // const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   // mode: 'production',
-  mode: 'development',
-  watch: !false,
+  watch: !pord,
   watchOptions: {
     aggregateTimeout: 300,
     ignored: /node_modules/,
     poll: 1000, // 每秒检查一次变动
   },
-  entry: './client/src/index.js',
+  entry: './client/src/main.js',
   output: {
     filename: 'js/[name].js',
     path: path.resolve(__dirname, '../assets'),
@@ -72,6 +73,21 @@ module.exports = {
                 // outputPath: './img' //指定输出路径：放到public下的img文件下，如果没有则会自动新建,并且路片路径自动变成img/***.***
             }
         }]
+      },
+      {
+        test: /\.js$/,
+        // 如果你的这个js文件在node_modules里面，就不使用babel-loader了
+        exclude: /node_modules/,
+        include: [path.resolve(__dirname, './src')],
+        use: ['babel-loader', {
+          loader: 'eslint-loader',
+          options: {
+            formatter: require('eslint-friendly-formatter'),
+            emitWarning: true,
+            fix: true,
+            cache: true
+          }
+        }],
       }
     ],
   },
