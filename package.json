@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "dev:server": "nodemon ./server/app.js",
+    "dev:server": "nodemon server",
     "dev:client": "cross-env NODE_ENV=development npx webpack --mode=development --config ./client/webpack.config.js",
     "build": "cross-env NODE_ENV=production npx webpack --mode=production --config ./client/webpack.config.js",
     "start": "pm2 start pm2.config.json",
