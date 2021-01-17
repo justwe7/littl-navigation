@@ -19,6 +19,7 @@ module.exports = {
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         // 禁止出现空语句块
         'no-empty': 'warn',
+        'no-new': 'off',
         // 函数命名前空格(未生效)
         // 'space-before-function-paren': ["off", "always"],
         // 强制把变量的使用限制在其定义的作用域范围内

@@ -23,7 +23,8 @@ module.exports = {
   },
   entry: './client/src/main.js',
   output: {
-    filename: 'js/[name]-[chunkhash:8].js',
+    filename: 'js/[name].js',
+    // filename: 'js/[name]-[chunkhash:8].js',
     path: path.resolve(__dirname, '../htmls'),
   },
   plugins: [
@@ -35,7 +36,8 @@ module.exports = {
       template: path.resolve(__dirname, './index.html')
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/[name]-[chunkhash:8].css',
+      filename: 'css/[name].css',
+      // filename: 'css/[name]-[chunkhash:8].css',
     }),
     new webpack.ProvidePlugin({
       $: 'jquery',
@@ -86,7 +88,8 @@ module.exports = {
                 limit: 1024, //限制转base64的图片为1k(1024b)，超过1k的以url返回,设置此项需要安装依赖：file-loader，会将图片传到public下
                 publicPath: '/',
                 // publicPath: '/assets/',
-                name: 'images/[name]-[hash:8].[ext]'
+                name: 'images/[name].[ext]'
+                // name: 'images/[name]-[hash:8].[ext]'
                 // outputPath: './img' //指定输出路径：放到public下的img文件下，如果没有则会自动新建,并且路片路径自动变成img/***.***
             }
         }]
