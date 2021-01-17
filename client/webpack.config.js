@@ -3,11 +3,18 @@ const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+// const CssMinimizerPlugin = require('css-minimizer-webpack-plugin') // 压缩css
 
 const isPord = process.env.NODE_ENV === 'production'
 
+// 区分环境打包的配置，懒得新建文件了
+const isMergeConf = isPord ? {} : {
+  devtool: 'source-map'
+}
+
 module.exports = {
   // mode: 'production',
+  ...isMergeConf,
   watch: !isPord,
   watchOptions: {
     aggregateTimeout: 300,
@@ -51,17 +58,22 @@ module.exports = {
             },
           },
           {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-            },
+            loader: 'css-loader'
           },
-          'postcss-loader',
-          // 'resolve-url-loader',
+          { 
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                // plugins: [
+                //   require('autoprefixer')
+                // ]
+              }
+            }
+          },
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true,
+              // sourceMap: true,
             },
           },
         ],
@@ -81,7 +93,6 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        // 如果你的这个js文件在node_modules里面，就不使用babel-loader了
         exclude: /node_modules/,
         include: [path.resolve(__dirname, './src')],
         use: ['babel-loader', {
@@ -106,4 +117,11 @@ module.exports = {
       }
     ],
   },
+  optimization: {
+    minimizer: [
+      // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
+      // `...`,
+      // new CssMinimizerPlugin(),
+    ],
+  }
 }
