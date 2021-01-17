@@ -2,18 +2,13 @@ const Koa = require('koa');
 const path = require('path');
 const static = require('koa-static');
 const koaBodyParser = require('koa-bodyparser');
-// const serve = require('koa-static')
 const app = new Koa();
 const routers = require('./routers/index');
 
 app.use(koaBodyParser());
 
-app.use(static(
-  path.join( __dirname,  '../htmls')
-))
-app.use(static(
-  path.join( __dirname,  '../assets')
-))
+app.use(static(path.join( __dirname, '../htmls')))
+app.use(static(path.join( __dirname, '../assets')))
 
 app.use(routers.routes());
 
