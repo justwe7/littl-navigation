@@ -83,7 +83,7 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
+  color: inherit;
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -110,6 +110,9 @@ ul {
 blockquote,
 q {
   quotes: none;
+}
+a {
+  text-decoration: none;
 }
 blockquote:before,
 blockquote:after,

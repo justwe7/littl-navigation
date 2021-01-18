@@ -1,26 +1,32 @@
 import './css/style.scss';
+import './lib/jq-extend';
+import { debounce } from './lib/utils';
 import './js/index';
 
 const oInput = $('#key-ipt');
 const oForecastList = $('#forecast');
 
-function debounce (fn, interval = 300) {
-  let timeout = null;
-  return function () {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      fn.apply(this, arguments);
-    }, interval);
-  };
+/* 联想 */
+function suggestList (event, words) {
+  if (event.which !== 39 && event.which !== 40 && event.which !== 37 && event.which !== 38 && event.which !== 13) {
+    if (!words) {
+      oForecastList.hide();
+      return false;
+    }
+    $.jsonp2(words).then(list => {
+      // console.log(list);
+      let listHtmls = '';
+      list.forEach(v => {
+        listHtmls += `<li>${v}</li>`;
+      });
+      oForecastList.html(listHtmls);
+      oForecastList.show();
+    });
+  }
 }
 
 oInput.on('input', debounce(function (e) {
-  if (oInput.val().trim().length) {
-    oForecastList.show();
-  } else {
-    oForecastList.hide();
-  }
-  console.log(oInput.val());
+  suggestList(e, $.trim(oInput.val()));
 }));
 oInput.on('blur', function (e) {
   oForecastList.hide();

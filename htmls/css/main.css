@@ -83,7 +83,7 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
+  color: inherit;
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -110,6 +110,9 @@ ul {
 blockquote,
 q {
   quotes: none;
+}
+a {
+  text-decoration: none;
 }
 blockquote:before,
 blockquote:after,
@@ -317,6 +320,12 @@ body {
         border-top: 1px solid #fff; }
 .g-body .m-search-area .search .search-forecast li {
           padding: 10px; }
+.g-footer {
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    bottom: 0;
+    background: #fbfbfb; }
 
 
 /*# sourceMappingURL=main.css.map*/

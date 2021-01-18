@@ -39,12 +39,12 @@ module.exports = {
       filename: 'css/[name].css',
       // filename: 'css/[name]-[chunkhash:8].css',
     }),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
-      'window.$': 'jquery',
-    })
+    // new webpack.ProvidePlugin({
+    //   $: 'jquery',
+    //   jQuery: 'jquery',
+    //   'window.jQuery': 'jquery',
+    //   'window.$': 'jquery',
+    // })
   ],
   module: {
     rules: [
