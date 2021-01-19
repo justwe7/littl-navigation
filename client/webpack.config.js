@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-// const CssMinimizerPlugin = require('css-minimizer-webpack-plugin') // 压缩css
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin') // 压缩css
 
 const isPord = process.env.NODE_ENV === 'production'
 
@@ -51,14 +51,15 @@ module.exports = {
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: (resourcePath, context) => {
-                return path.relative(path.dirname(resourcePath), context) + './'
+          !isPord ? 'style-loader' :
+            {
+              loader: MiniCssExtractPlugin.loader, // 不支持热更新 开发环境不启用
+              options: {
+                publicPath: (resourcePath, context) => {
+                  return path.relative(path.dirname(resourcePath), context) + './'
+                },
               },
             },
-          },
           {
             loader: 'css-loader'
           },
@@ -121,10 +122,11 @@ module.exports = {
     ],
   },
   optimization: {
+    minimize: isPord,
     minimizer: [
       // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
       // `...`,
-      // new CssMinimizerPlugin(),
+      new CssMinimizerPlugin(), // 提取单一css就需要需要配置单独的插件的
     ],
   }
 }
