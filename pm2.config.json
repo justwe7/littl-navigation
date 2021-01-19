@@ -2,7 +2,7 @@
   "apps": [
     {
       "name": "api-server",
-      "script": "./server/app.js",
+      "script": "./server/index.js",
       "args": "start",
       "log_date_format": "YYYY-MM-DD HH:mm:ss",
       "exec_mode": "cluster",
