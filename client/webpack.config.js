@@ -25,7 +25,7 @@ module.exports = {
   output: {
     filename: 'js/[name].js',
     // filename: 'js/[name]-[chunkhash:8].js',
-    path: path.resolve(__dirname, '../htmls'),
+    path: path.resolve(__dirname, '../dist'),
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -39,12 +39,12 @@ module.exports = {
       filename: 'css/[name].css',
       // filename: 'css/[name]-[chunkhash:8].css',
     }),
-    // new webpack.ProvidePlugin({
-    //   $: 'jquery',
-    //   jQuery: 'jquery',
-    //   'window.jQuery': 'jquery',
-    //   'window.$': 'jquery',
-    // })
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      'window.$': 'jquery',
+    })
   ],
   module: {
     rules: [

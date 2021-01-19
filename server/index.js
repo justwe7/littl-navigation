@@ -7,7 +7,7 @@ const routers = require('./routers/index');
 
 app.use(koaBodyParser());
 
-app.use(static(path.join( __dirname, '../htmls')))
+app.use(static(path.join( __dirname, '../dist')))
 app.use(static(path.join( __dirname, '../assets')))
 
 app.use(routers.routes());
