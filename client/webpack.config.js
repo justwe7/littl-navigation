@@ -10,12 +10,17 @@ const isProd = process.env.NODE_ENV === 'production'
 
 // 区分环境打包的配置，懒得新建文件了
 const isMergeConf = isProd ? {} : {
-  devtool: 'source-map'
+  devtool: 'source-map',
+  target: 'web'
 }
 
 module.exports = {
   // mode: 'production',
   ...isMergeConf,
+  devServer: { // https://github.com/webpack/webpack-dev-server/issues/2759
+    port: 3000,
+    contentBase: '../dist',
+  },
   watch: !isProd,
   watchOptions: {
     aggregateTimeout: 300,
@@ -29,6 +34,7 @@ module.exports = {
     path: path.resolve(__dirname, '../dist'),
   },
   plugins: [
+    // new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       // hash: true,
