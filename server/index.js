@@ -12,4 +12,4 @@ app.use(static(path.join( __dirname, '../assets')))
 
 app.use(routers.routes());
 
-app.listen(7001, '0.0.0.0'); // 如若没有0.0.0.0可能会导致部署无法访问
+app.listen(7777, '0.0.0.0'); // 如若没有0.0.0.0可能会导致部署无法访问
