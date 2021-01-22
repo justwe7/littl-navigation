@@ -20,6 +20,7 @@ module.exports = {
   devServer: { // https://github.com/webpack/webpack-dev-server/issues/2759
     port: 3000,
     contentBase: '../dist',
+    // hot: true
   },
   watch: !isProd,
   watchOptions: {
@@ -34,7 +35,6 @@ module.exports = {
     path: path.resolve(__dirname, '../dist'),
   },
   plugins: [
-    // new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       // hash: true,
@@ -51,7 +51,8 @@ module.exports = {
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
       'window.$': 'jquery',
-    })
+    }),
+    // new webpack.HotModuleReplacementPlugin(),
   ],
   module: {
     rules: [
