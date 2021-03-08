@@ -2,6 +2,23 @@
 @import "./mixin.scss";
 @import "./variables.scss";
 
+:root {
+  --primary-color: #27496d;
+  --primary-light-hover: #0c7b93;
+  --primary-dark-hover: #48466d;
+  --font-color: #2c3f51;
+  --background-color: #F5F7F9;
+  --border-color: #ebf2f6;
+  --selection-color: #142850;
+  --post-meta: #9EABB3;
+  --head-color: #393e46;
+  --footer-color: #393e46;
+  --darkgrey: #15171A;
+  --midgrey: #738a94;
+  --lightgrey: #c5d2d9;
+  --whitegrey: #e5eff5;
+}
+
 html {
   position: relative;
   width: 100%;
@@ -92,7 +109,7 @@ body {
             }
           }
           .search-forecast {
-            display: none;
+            // display: none;
             position: absolute;
             left: 0;
             width: 664px;
@@ -101,7 +118,37 @@ body {
             border: 1px solid #188fff;
             border-top: 1px solid #fff;
             li {
-              padding: 10px;
+              >a {
+                padding: 10px;
+                transition: 0.1s;
+                display: block;
+              }
+              &.cur {
+                color: var(--primary-light-hover);
+                transform: translateY(-1px);
+                background-color: transparent;
+                // border-top-style: solid!important;
+                background-image: linear-gradient(#fff,hsla(0,0%,100%,.5) 30%,#fff);
+                box-shadow: 0 0 13px rgb(0 61 131 / 10%);
+              }
+              &:hover {
+                color: var(--primary-light-hover);
+                transform: translateY(-1px);
+                background-color: transparent;
+                // border-top-style: solid!important;
+                background-image: linear-gradient(#fff,hsla(0,0%,100%,.5) 30%,#fff);
+                box-shadow: 0 0 13px rgb(0 61 131 / 10%);
+              }
+              // &:nth-of-type(2) {
+              //   color: var(--primary-light-hover);
+              //   transform: translateY(-1px);
+              //   background-color: transparent;
+              //   // border-top-style: solid!important;
+              //   background-image: linear-gradient(#fff,hsla(0,0%,100%,.5) 30%,#fff);
+              //   box-shadow: 0 0 13px rgb(0 61 131 / 10%);
+              // }
+              // border-bottom: 1px solid #000;
+              // background: linear-gradient(#fff,hsla(0,0%,100%,.7));
             }
           }
         }

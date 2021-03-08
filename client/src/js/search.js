@@ -18,7 +18,7 @@ function suggestList (event, words) {
       sugList = list;
       let listHtmls = '';
       list.forEach(v => {
-        listHtmls += `<li>${v}</li>`;
+        listHtmls += `<li> <a target="_blank" href="https://www.baidu.com/s?wd=${v}">${v}</a></li>`;
       });
       oForecastList.html(listHtmls);
       oForecastList.show();
@@ -43,11 +43,13 @@ const setInputVal = () => {
   } else if (sugIndex === maxIndex) {
     sugIndex = 0;
   }
+  oForecastList.find('li').removeClass('cur');
+  oForecastList.find('li').eq(sugIndex).addClass('cur');
   oInput.val(sugList[sugIndex]);
 };
 oInput.on('keydown', function (e) { // 方向键 && 回车
   const methodKey = keyCode[e.keyCode];
-  console.log(e);
+
   switch (methodKey) {
     case 'up':
       sugIndex--;
@@ -68,7 +70,14 @@ oInput.on('keydown', function (e) { // 方向键 && 回车
   // console.log(e);
   // suggestList(e, $.trim(oInput.val()));
 });
-oInput.on('blur', function (e) {
+// oInput.on('blur', function (e) {
+//   setTimeout(() => {
+//     oForecastList.hide();
+//     sugIndex = -1;
+//     sugList = [];
+//   }, 100);
+// });
+$('.viewport').on('click', function () {
   oForecastList.hide();
   sugIndex = -1;
   sugList = [];
