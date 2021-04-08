@@ -15,6 +15,9 @@ function suggestList (event, words) {
       return false;
     }
     $.jsonp2(words).then(list => {
+      if (list.length === 0) {
+        return false;
+      }
       sugList = list;
       let listHtmls = '';
       list.forEach(v => {
