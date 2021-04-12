@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 class Db {
   constructor() {
     mongoose.connect('mongodb://localhost:27017/turi', {
-      // auth: { "authSource": "admin" },
-      // user: 'root',
-      // pass: 'root',
-      useNewUrlParser: true
-      // useUnifiedTopology: true
+      auth: { "authSource": "admin" },
+      user: 'root',
+      pass: 'root',
+      useNewUrlParser: true,
+      useUnifiedTopology: true
     })
 
     const db = mongoose.connection;
