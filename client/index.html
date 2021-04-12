@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -76,6 +76,14 @@
       </div>
       <!-- 工具箱 -->
       <div class="m-tools">
+        <form>
+          <div class="form-group">
+            <label for="url">短链地址</label>
+            <input type="sURL" class="form-control" id="url" aria-describedby="sURLHelp">
+            <small id="sURLHelp" class="form-text text-muted">有效期3天</small>
+          </div>
+          <button type="submit" class="btn btn-primary shortlink_hook">生成</button>
+        </form>
         <ul class="f-clearfix">
           <li><a href="">二维码生成器</a></li>
           <li><a href="">二维码生成器</a></li>

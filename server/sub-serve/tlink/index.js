@@ -104,6 +104,13 @@ class CreateTlinkServe {
     // app.use(static(path.join( __dirname, '../dist')))
     // app.use(static(path.join( __dirname, '../assets')))
 
+    this.app.use(async (ctx, next) => {
+      await next();
+      if (/localhost|littl.cn/.test(ctx.request.header.origin)) {
+        ctx.set('Access-Control-Allow-Origin', '*')
+      }
+    })
+
     this.app.use(router.routes());
   }
   listen (port) {

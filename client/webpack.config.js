@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 // const UglifyJsPlugin = require('uglifyjs-webpack-plugin') // 压缩js
 // const CssMinimizerPlugin = require('css-minimizer-webpack-plugin') // 压缩css
 
@@ -53,6 +54,12 @@ module.exports = {
       'window.$': 'jquery',
     }),
     // new webpack.HotModuleReplacementPlugin(),
+    new FriendlyErrorsWebpackPlugin({
+      compilationSuccessInfo: {
+        notes: ['running at http://localhost:3000']
+      },
+      clearConsole: true,
+    })
   ],
   module: {
     rules: [
