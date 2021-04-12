@@ -9,11 +9,9 @@ const dayjs = require('dayjs');
 const Db = require('./db');
 const db = new Db()
 
-console.log(dayjs().add(7).valueOf())
-
-const creatData = ({ url, day = 7 }) => {
-  if (!url) {
-    return Promise.reject('源网址必传！')
+const creatData = async ({ url, day = 3 }) => {
+  if (!url || !/^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/.test(url)) {
+    return Promise.reject('请传入正确的网站域名！')
   }
   if (isNaN(Number(day))) {
     return Promise.reject('失效时期传数字')
@@ -25,13 +23,23 @@ const creatData = ({ url, day = 7 }) => {
     url,
     // tLink: 'https://t.littl.cn/' + id,
     // path: id,
-    expires: date.add(day).valueOf(), // 过期 默认7天
+    expires: date.add(day, 'day').valueOf(), // 过期
     createTime: date.valueOf()
   }
   // const dbData = {
   //   originLink: 'https://162223.com', tLink: 'https://t.littl.cn/ss', path: '22ss', expires: +new Date(), createTime: +new Date()
   // }
-  return db.add(dbData)
+
+  try {
+    return await db.add(dbData)
+  } catch (error) {
+    try {
+      return await db.find({ url })
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  }
+  // return db.add(dbData)
 }
 // creatData('https://2222.com')
 
@@ -44,16 +52,30 @@ class CreateTlinkServe {
     const router = new Router();
     /* 定义首页 */
     router.get('/', async (ctx) => {
-      ctx.body = 'hello doge'
+      ctx.body = '短链生成器，默认三天有效期'
       // static(path.join( __dirname, '../../html/index.html'))
     });
     router.get('/:id', async (ctx) => {
       // console.log(ctx.params)
-      const dbData = await db.find(ctx.params.id)
-      // ctx.status = 301;
-      // console.log(dbData.originLink)
-      ctx.redirect(dbData.url)
-      // ctx.body = dbData
+      try {
+        const dbData = await db.find({ _id: ctx.params.id })
+        // ctx.status = 301;
+        // console.log(dbData, 222)
+        if (!dbData) {
+          await db.del({ _id: ctx.params.id })
+          ctx.body = {
+            code: -1,
+            msg: '短链已过期，请重新生成~'
+          }
+        } else {
+          ctx.redirect(dbData.url)
+        }
+      } catch (error) {
+        ctx.body = {
+          code: -1,
+          msg: '短链无效'
+        }
+      }
       // static(path.join( __dirname, '../../html/index.html'))
     });
 
@@ -69,10 +91,10 @@ class CreateTlinkServe {
 
       try {
         const dbData = await creatData(ctx.request.body)
-        console.log(dbData)
-        ctx.body = { code: 200, msg: '成功', data: 'http://t.littl.cn/' + dbData._id }
+        // console.log(dbData)
+        ctx.body = { code: 200, msg: '成功', data: 'https://t.littl.cn/' + dbData._id }
       } catch (error) {
-        console.log(error)
+        // console.log(error)
         ctx.body = { code: -1, msg: JSON.stringify(error), data: null }
       }
     })
