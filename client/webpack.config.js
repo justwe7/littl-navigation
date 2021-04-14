@@ -29,7 +29,11 @@ module.exports = {
     ignored: /node_modules/,
     poll: 1000, // 每秒检查一次变动
   },
-  entry: './client/src/main.js',
+  // entry: './client/src/main.js',
+  entry: {
+    'home': './client/src/main.js',
+    'slink': './client/src/js/modules/slink.js',
+  },
   output: {
     filename: 'js/[name].js',
     // filename: 'js/[name]-[chunkhash:8].js',
@@ -43,16 +47,23 @@ module.exports = {
       filename: 'index.html',
       template: path.resolve(__dirname, './index.html')
     }),
+    new HtmlWebpackPlugin({
+      multihtmlCatch: true, // 开启多入口缓存
+      inject: 'body',
+      filename: 'slink.html',
+      chunks: ["slink", "vendor", "manifest"], // 每个html引用的js模块
+      template: path.resolve(__dirname, './src/modules/slink.html')
+    }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
       // filename: 'css/[name]-[chunkhash:8].css',
     }),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
-      'window.$': 'jquery',
-    }),
+    // new webpack.ProvidePlugin({
+    //   $: 'jquery',
+    //   jQuery: 'jquery',
+    //   'window.jQuery': 'jquery',
+    //   'window.$': 'jquery',
+    // }),
     // new webpack.HotModuleReplacementPlugin(),
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
