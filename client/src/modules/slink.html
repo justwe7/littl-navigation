@@ -9,6 +9,153 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha256-7dA7lq5P94hkBsWdff7qobYkp9ope/L5LQy2t/ljPLo=" crossorigin="anonymous"></script>
 </head>
 <body>
-  啦啦啦
+  <div class="container1">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">短链生成器</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <!-- <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li> -->
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">首页</a></li>
+          <li class="breadcrumb-item active" aria-current="page">短链生成器</li>
+        </ol>
+      </nav>
+      <div class="jumbotron">
+        <h1 class="display-4">短链生成器</h1>
+        <p class="lead">提供一个短网址服务。假如我们的任务中出现长URL 就会比较麻烦？如果有一个短网址生成器就好了!</p>
+        <hr class="my-4">
+        <!-- <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+        <div class="content-container">
+          <div class="row">
+            <div class="col-xs-12 col-md-9">
+              <form id="form">
+                <div class="form-group">
+                  <label for="genUrl">域名</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <select class="custom-select input-group-prepend" name="protocol">
+                        <option value="https://" selected>https://</option>
+                        <option value="http://">http://</option>
+                      </select>
+                    </div>
+                    <input type="input" class="form-control" id="genUrl" name="url" aria-autocomplete="both" autocomplete="off" aria-describedby="UrlHelp">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="expireDays">过期时间</label>
+                  <select class="form-control" id="expireDays" name="expires">
+                    <option value="1">1天</option>
+                    <option value="3">3天</option>
+                    <option value="7">7天</option>
+                    <option value="30">30天</option>
+                    <!-- <option></option> -->
+                  </select>
+                  <small id="UrlHelp" class="form-text text-muted">默认生效时间3天，短链过期后将无法使用</small>
+                </div>
+                <!-- <div class="form-group">
+                  <label for="exampleInputUrl1">url地址</label>
+                  <input type="input" class="form-control" id="exampleInputUrl1" aria-autocomplete="both" autocomplete="off" aria-describedby="UrlHelp">
+                  <small id="UrlHelp" class="form-text text-muted">We'll never share your Url with anyone else.</small>
+                </div> -->
+               <!--  <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1">
+                </div> -->
+                <!-- <div class="form-group form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div> -->
+                <button type="submit" class="btn btn-primary shortlink_hook">生成</button>
+                <!-- <button class="btn btn-primary" type="button" disabled class="">
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Loading...
+                </button> -->
+              </form>
+            </div>
+            <div class="col-xs-12 col-md-3"></div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="alert alert-primary" role="alert">
+        <h4 class="alert-heading">短网址生成成功。访问一下试试吧！</h4>
+        <hr>
+        <p class="mb-0">https://t.littl.cn/</p>
+      </div> -->
+    </div>
+
+    <div class="modal fade" id="errorModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="errorLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="errorLabel">提示</h5>
+            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body" id="errorModalTips">
+            错误
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">好的</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="gModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="gModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="gModalLabel">成功</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="gModalTips">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">我知道了</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <footer class="g-footer">&copy;littl.cn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://beian.miit.gov.cn/" target="_blank">晋ICP备2021001641号</a></footer> -->
+
 </body>
 </html>
