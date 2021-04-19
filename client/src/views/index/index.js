@@ -1,7 +1,7 @@
-import './css/style.scss';
-import './lib/jq-extend';
-import './js/index';
-import './js/search';
+import './index.scss';
+import '../../lib/jq-extend';
+// import './js/index';
+import './search';
 
 // if (module.hot) {
 //   module.hot.accept('./main.js', function () {

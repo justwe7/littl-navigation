@@ -1,4 +1,4 @@
-import { debounce } from '../lib/utils';
+import { debounce } from '../../lib/utils';
 
 const oInput = $('#key-ipt');
 const oForecastList = $('#forecast');

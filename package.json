@@ -4,10 +4,10 @@
   "description": "导航",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development npx webpack serve --mode=development --config ./client/webpack.config.js",
+    "dev": "cross-env NODE_ENV=development npx webpack serve --mode=development --config ./client/build/webpack.config.js",
     "dev:all": "concurrently \"npm run dev:server\" \"npm run dev\"",
     "dev:server": "nodemon server",
-    "build": "cross-env NODE_ENV=production npx webpack --mode=production --config ./client/webpack.config.js",
+    "build": "cross-env NODE_ENV=production npx webpack --mode=production --config ./client/build/webpack.config.js",
     "start": "pm2 start pm2.config.json",
     "stop": "pm2 stop pm2.config.json",
     "restart": "pm2 restart pm2.config.json"

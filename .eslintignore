@@ -1,3 +1,4 @@
 /client/webpack.config.js
+/client/build/*
 /babel.config.js
 /server/*
