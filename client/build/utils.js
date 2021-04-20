@@ -28,7 +28,7 @@ exp.getTplEntry = function () {
       multihtmlCatch: true, // 开启多入口缓存
       inject: 'body',
       filename: `${moduleName}.html`,
-      chunks: [moduleName, 'vendor', 'manifest'], // 每个html引用的js模块
+      chunks: [moduleName, 'vendor'], // 每个html引用的js模块
       template: `${item}/${moduleName}.html`
     })
   })
