@@ -39,6 +39,21 @@ body {
   position: absolute;
   width: 100%;
   min-height: 100%;
+  #he-plugin-simple {
+    position: absolute !important;
+    top: 10px !important;
+    right: 0 !important;
+    .s-sticker {
+      div {
+        &:last-child {
+          display: none;
+        }
+      }
+      & + div *{
+        z-index: 1;
+      }
+    }
+  }
   // position: relative;
   @at-root {
     .g-header {
@@ -52,6 +67,7 @@ body {
       // position: absolute;
       // top: 0;
       .m-main {
+        position: relative;
         max-width: 1128px;
         @extend %centerblock;
       }
