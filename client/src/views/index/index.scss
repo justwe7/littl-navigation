@@ -186,7 +186,7 @@ body {
         }
       }
       .m-nav-area {
-        padding: 20px 0;
+        padding: 40px 0;
         .nav-types {
           text-align: center;
           li {
@@ -197,6 +197,9 @@ body {
             display: inline-block;
             font-size: 16px;
             font-weight: 700;
+            &.cur {
+              text-decoration: underline;
+            }
           }
         }
         .nav-list-box {
@@ -216,13 +219,19 @@ body {
       }
       .m-tools {
         li {
+          text-align: center;
+          box-sizing: border-box;
+          padding: 15px 10px;
           width: 16.6667%;
           float: left;
-          background-color: #fff;
+          // background-color: #fff;
           border: 1px solid hsla(210,8%,51%,.09)!important;
+          background-image: linear-gradient(to top, #fff, #f9f9f9);
+          transition: box-shadow .3s ease-in-out;
+          border-radius: 5px;
           a {
             display: block;
-            padding: 25px;
+            // padding: 25px;
           }
         }
       }

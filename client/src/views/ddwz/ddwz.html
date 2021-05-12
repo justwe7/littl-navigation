@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html manifest="manifest">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha256-T/zFmO5s/0aSwc6ics2KLxlfbewyRz6UNw1s3Ppf5gE=" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha256-7dA7lq5P94hkBsWdff7qobYkp9ope/L5LQy2t/ljPLo=" crossorigin="anonymous"></script>
+<link href="https://static.littl.cn/cp/js/layer_mobile/need/layer.css" type="text/css" rel="stylesheet">
+<script src="https://static.littl.cn/cp/js/layer_mobile/layer.js"></script>
+<script src="https://static.littl.cn/cp/js/underscore-min.js"></script>
+<script src="https://static.littl.cn/cp/js/clipboard.min.js"></script>
+<script src="https://static.littl.cn/cp/js/jbp.js"></script>
+<link rel="stylesheet" type="text/css" href="https://static.littl.cn/cp/css/tool.css" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<title>微信颠倒文字生成工具</title>
+<script>
+$(function() {
+    var clipboard = new Clipboard('#copy');
+
+    clipboard.on('success', function(e) {
+    	e.clearSelection();
+    	tip("拷贝成功");
+    });
+
+    clipboard.on('error', function(e) {
+    	e.clearSelection();
+    	tip("拷贝失败，请手动复制");
+    });
+    
+});
+</script>
+</head>
+<body  oncontextmenu="return true;">
+	<div id="container" class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">文字颠倒生成器</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <!-- <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li> -->
+        </ul>
+      </div>
+    </nav>
+	    <p id="info">
+	        1、输入想要颠倒的内容，点击生成 <br><br>
+	        2、内容会自动变为颠倒文字<br><br>
+	        3、点击复制按钮，会复制输出的内容<br><br>
+	    </p>
+	    <p>输入：</p>
+	    <textarea class="tarea" id="input" style="float:none" maxlength=200></textarea>
+	    <p>输出：<button type="button" style="width:60px;height:22px;font-size:10px;background-color:#4682B4; border-radius:10px;" data-clipboard-target="#output"  id="copy">复制</button></p>
+	    <!--<input onclick="this.focus();this.select();this.setSelectionRange(0, this.value.length);" id="output" readonly >-->
+	    <textarea  class="tarea" id="output" readonly onclick="this.focus();this.select();this.setSelectionRange(0, this.value.length);"> </textarea>
+	    <br><br>
+	    <button type="button" style="background-color:#00C74A; border-radius:20px;" id="create">生成</button>
+	    <button type="button" style="background-color:#FF4500; border-radius:20px;"  id="clear">清空</button>
+	   
+	</div>
+</body>
+ <script>
+	
+	var $content=$("#input");
+	var $result=$("#output");
+
+
+	function flipString(aString) {
+	 var last = aString.length - 1;
+	 var result = new Array(aString.length)
+	 for (var i = last; i >= 0; --i) {
+		  var c = aString.charAt(i)
+		  var r = flipTable[c]
+		  result[last - i] = r ? r : c
+	 }
+	 return result.join('')
+	}
+
+	var flipTable = {
+	a : '\u0250',
+	b : 'q',
+	c : '\u0254', //open o -- from pne
+	d : 'p',
+	e : '\u01DD',
+	f : '\u025F', //from pne
+	g : '\u0183',
+	h : '\u0265',
+	i : '\u0131', //from pne
+	j : '\u027E',
+	k : '\u029E',
+	//l : '\u0283',
+	m : '\u026F',
+	n : 'u',
+	r : '\u0279',
+	t : '\u0287',
+	v : '\u028C',
+	w : '\u028D',
+	y : '\u028E',
+	'.' : '\u02D9',
+	'[' : ']',
+	'(' : ')',
+	'{' : '}',
+	'?' : '\u00BF', //from pne
+	'!' : '\u00A1',
+	"\'" : ',',
+	'<' : '>',
+	'_' : '\u203E',
+	'\u203F' : '\u2040',
+	'\u2045' : '\u2046',
+	'\u2234' : '\u2235',
+	'\r' : '\n' //thank you, Yeeliberto
+	}
+
+	for (i in flipTable) {
+	  flipTable[flipTable[i]] = i
+	}
+
+	$("#create").on("click",function(e){
+	 	$result.val('');
+		e.preventDefault();
+		var inputContent = $content.val();
+		inputContent = inputContent.toLowerCase();
+	 	var result = flipString(inputContent);
+		$result.val(result);
+        });
+        
+        
+        $("#clear").on("click",function(e){
+       	e.preventDefault();
+       	$("#input").val('');
+      	$("#output").val(' ');
+      	tip("已清空");
+        });
+
+</script>
+
+</html>

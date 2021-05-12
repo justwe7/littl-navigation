@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html manifest="manifest">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha256-T/zFmO5s/0aSwc6ics2KLxlfbewyRz6UNw1s3Ppf5gE=" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha256-7dA7lq5P94hkBsWdff7qobYkp9ope/L5LQy2t/ljPLo=" crossorigin="anonymous"></script>
+<link href="https://static.littl.cn/cp/js/layer_mobile/need/layer.css" type="text/css" rel="stylesheet">
+<script src="https://static.littl.cn/cp/js/layer_mobile/layer.js"></script>
+<script src="https://static.littl.cn/cp/js/underscore-min.js"></script>
+<script src="https://static.littl.cn/cp/js/jquery.js"></script>
+<script src="https://static.littl.cn/cp/js/json2.js"></script>
+<script src="https://static.littl.cn/cp/js/clipboard.min.js"></script>
+<script src="https://static.littl.cn/cp/js/jbp.js"></script>
+<link rel="stylesheet" type="text/css" href="https://static.littl.cn/cp/css/tool.css" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<title>智能机器人</title>
+<script>
+$(function() {
+    var clipboard = new Clipboard('#copy');
+
+    clipboard.on('success', function(e) {
+    	e.clearSelection();
+    	tip("拷贝成功");
+    });
+
+    clipboard.on('error', function(e) {
+    	e.clearSelection();
+    	tip("拷贝失败，请手动复制");
+    });
+    
+    
+    var clipboardPlus = new Clipboard('#copyPlus');
+
+    clipboardPlus.on('success', function(e) {
+    	e.clearSelection();
+    	// 拷贝后，隐藏
+    	$("#outputPlus").css({"display":"none"});
+    	
+   	 if (addNo>=10) {
+		tip("累加拷贝次数最多10次");
+	 } else{
+		tip("累加拷贝成功");
+	 }
+    	 addNo++;
+    });
+
+    clipboardPlus.on('error', function(e) {
+    	e.clearSelection();
+    	// 拷贝后，隐藏
+    	$("#outputPlus").css({"display":"none"});
+    	tip("累加拷贝失败，请手动复制");
+    });
+    
+     $("#copyPlus").on("click",function(e){
+     	if ($.trim($("#output").val()) != "") {
+     		// 显示后，才可以拷贝
+     		$("#outputPlus").css({"display":"inline"});
+     		if (addNo>=10) {
+     			return;
+     		}
+     		$("#outputPlus").val($("#outputPlus").val()+"\n"+$("#input").val()+"：\n"+$("#output").val());
+     	}
+      });
+});
+</script>
+</head>
+<body  oncontextmenu="return true;">
+	<div id="container">
+	<h3>智能机器人</h3><hr>
+	    <p id="info">
+	        1、输入你的问题（例如：北京天气，笑话，苹果的英文。 <a href="javascript:tutorial();">详细教程</a>），点击发送 <br><br>
+	        2、点击复制按钮，会复制输出的内容<br><br>
+	        3、点击累加复制按钮，会累加复制输出的内容（次数限制ᴹᵃˣ¹⁰）<br><br>
+	    </p>
+	    <p>输入：</p>
+	    <input type="text" name="name" id="input" maxlength="25">
+	    <p>输出：<button type="button" style="width:60px;height:22px;font-size:10px;background-color:#4682B4; border-radius:10px;" data-clipboard-target="#output"  id="copy">复制</button>
+	    <button type="button" style="width:60px;height:22px;font-size:10px;background-color:#4682B4; border-radius:10px;" data-clipboard-target="#outputPlus"  id="copyPlus">累加复制</button>
+	    <button type="button" style="width:60px;height:22px;font-size:10px;background-color:#FF4500; border-radius:10px;"  id="clearPlus">清空累加</button>
+	    </p>
+	    <textarea  class="tarea" id="output" readonly onclick="this.focus();this.select();this.setSelectionRange(0, this.value.length);"> </textarea>
+	    <textarea  class="tarea" id="outputPlus" readonly style="display:none"> </textarea>
+	    <button type="button" style="background-color:#00C74A; border-radius:20px;" id="send">发送</button>
+	    <button type="button" style="background-color:#FF4500; border-radius:20px;"  id="clear">清空</button>
+	   
+	</div>
+</body>
+ <script>
+ 
+ 	function back() {
+ 		this.location.href="gj.html";
+ 	}
+ 	
+ 	function tutorial() {
+ 		var cont = "<b>生活百科</b>：爱迪生的简介<br>";
+ 		cont += "<b>问答百科</b>：周杰伦是谁<br>";
+ 		cont += "<b>中英互译</b>：苹果英语怎么说<br>";
+ 		cont += "<b>数字计算</b>：3乘以3是多少<br>";
+ 		cont += "<b>聊天对话</b>：我生病了有点难受<br>";
+ 		cont += "<b>笑话大全</b>：讲个笑话<br>";
+ 		cont += "<b>故事大全</b>：讲个故事；讲个白雪公主的故事吧<br>";
+ 		cont += "<b>星座运势</b>：天蝎座资料；天蝎座运势；天蝎座性格<br>";
+ 		cont += "<b>脑筋急转弯</b>：脑筋急转弯<br>";
+ 		cont += "<b>歇后语</b>：歇后语<br>";
+ 		cont += "<b>绕口令</b>：绕口令<br>";
+ 		cont += "<b>顺口溜</b>：顺口溜<br>";
+		cont += "<b>藏头诗</b>：我爱中华，藏头诗<br>";
+		cont += "<b>新闻资讯</b>：今日新闻<br>";
+ 		cont += "<b>天气查询</b>：北京天气；广东天气<br>";
+ 		cont += "<b>快递查询</b>：查询快递123456789<br>";
+ 		cont += "<b>日期查询</b>：今天农历多少；明年母亲节日期<br>";
+ 		cont += "<b>城市邮编</b>：北京邮编；包头邮编是什么";
+ 		pop("机器人教程", cont);
+ 	}
+
+        var $content=$("#input");
+	 var $result=$("#output");
+	 var urlStr = "http://www.tuling123.com/openapi/api?key=";
+	 var keyStr = "36f6d443eebb468194081058a118f14e";
+	 var addNo = 0;
+	 $("#send").on("click",function(e){
+	 	var url = urlStr +keyStr+"&info="+encodeURI($content.val());
+	 	//window.open(url);
+	 	if ($.trim($content.val()) == "") {
+	 		tip("请输入内容");
+	 		return;
+	 	}
+	 	$.ajax({
+			  url: url,
+			  cache: false,
+			  type: 'get',
+			  dataType: 'JSON',//here
+			  beforeSend: function(){layer.open({type: 2})},
+			  complete: function(){layer.closeAll();},
+			  success: function (data) {
+			  	//var result =JSON.stringify(data);
+			  	//alert(data.code);
+			  	if(data.code == 40001) {
+			  		tip("参数key错误");
+			  		return;
+			  	} else if(data.code == 40002) {
+			  		tip("请求内容info为空");
+			  		return;
+			  	} else if(data.code == 40004) {
+			  		tip("当天请求次数已使用完");
+			  		return;
+			  	} else if(data.code == 40007) {
+			  		tip("数据格式异常/请按规定的要求进行加密");
+			  		return;
+			  	} else {
+			  		// 滚动条归位
+			  		$result.scrollTop(0);
+			  		//tip("请求成功");
+					if(!!data.text) {
+						$result.val(data.text+"\n");
+					}
+					
+					if(!!data.url) {
+						$result.val($result.val()+data.url);
+					}
+					
+			  		if(!!data.list) {
+			  			var lst = data.list;
+						$.each(lst, function(idx, obj) {
+							$result.val($result.val()+obj.article+"\n"+obj.source+"\n"+obj.detailurl);
+						});
+					}
+			  	}
+
+			  }
+		});
+        });
+        
+        $("#clear").on("click",function(e){
+       	e.preventDefault();
+       	$("#input").val('');
+      	$("#output").val(' ');
+      	tip("已清空");
+        });
+        
+        $("#clearPlus").on("click",function(e){
+       	e.preventDefault();
+       	
+       	  //询问框
+		  layer.open({
+		    content: '您确定要清空已累加数据吗？<br>放心，剪贴板的内容不会清空。'
+		    ,btn: ['好的', '取消']
+		    ,yes: function(index){
+		       addNo = 0;
+      		$("#outputPlus").val('');
+      		tip("已清空累加数据");
+		      layer.close(index);
+		    }
+		  });
+        });
+        
+        function tip(msg) {
+	          //提示
+		  layer.open({
+		    content: msg
+		    ,skin: 'msg'
+		    ,time: 2 //2秒后自动关闭
+		  });
+	}
+	
+</script>
+
+</html>
