@@ -136,6 +136,7 @@ export default {
      * @param {Object} sorter 排序条件
      */
     loadData (pagination, filters, sorter) {
+      console.log(pagination)
       this.localLoading = true
       const parameter = Object.assign({
         pageNo: (pagination && pagination.current) ||

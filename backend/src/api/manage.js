@@ -1,9 +1,13 @@
 import request from '@/utils/request'
+import request2 from '@/utils/request2'
 
 const api = {
   user: '/user',
   role: '/role',
-  service: '/service',
+  service: '/v1/nav/list',
+  update: '/v1/nav/update',
+  getlinks: '/v1/tlink/list',
+  // service: '/service',
   permission: '/permission',
   permissionNoPager: '/permission/no-pager',
   orgTree: '/org/tree'
@@ -27,11 +31,27 @@ export function getRoleList (parameter) {
   })
 }
 
-export function getServiceList (parameter) {
-  return request({
-    url: '/app/sss',
+export function getShortList (parameter) {
+  return request2({
+    url: api.getlinks,
     method: 'get',
     params: parameter
+  })
+}
+
+export function getServiceList (parameter) {
+  return request2({
+    url: api.service,
+    method: 'get',
+    params: parameter
+  })
+}
+
+export function updateItem (parameter) {
+  return request2({
+    url: api.update,
+    method: 'post',
+    data: parameter
   })
 }
 

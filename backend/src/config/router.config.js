@@ -86,6 +86,13 @@ export const asyncRouterMap = [
             meta: { title: 'menu.list.table-list', keepAlive: true, permission: ['table'] }
           },
           {
+            path: '/list/short-link',
+            name: 'TableShortListWrapper',
+            hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+            component: () => import('@/views/list/ShortList'),
+            meta: { title: 'menu.list.short-list', keepAlive: true, permission: ['table'] }
+          }/* ,
+          {
             path: '/list/basic-list',
             name: 'BasicList',
             component: () => import('@/views/list/BasicList'),
@@ -123,7 +130,7 @@ export const asyncRouterMap = [
                 meta: { title: 'menu.list.search-list.applications', permission: ['table'] }
               }
             ]
-          }
+          } */
         ]
       }
 

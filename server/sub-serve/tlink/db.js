@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 class Db {
-  constructor() {
+  constructor(props) {
     mongoose.connect('mongodb://localhost:27017/turi', {
       auth: { "authSource": "admin" },
       user: 'root',
@@ -9,7 +9,7 @@ class Db {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
-
+    mongoose.set('useCreateIndex', true)
     const db = mongoose.connection;
     db.on("error", function (error) {
       if (error) {
@@ -20,16 +20,24 @@ class Db {
       console.log("数据库连接成功");
     });
 
-    const Schema = mongoose.Schema({
-      _id: String,
-      url: { type: String, unique: true, dropDups: true, index: true },
-      expires: Number,
-      createTime: Number,
-    }, { collection: 'main' });
-    this.Model = db.model("main", Schema);
+    // const Schema = mongoose.Schema({}, { collection: table });
+    const Schema = mongoose.Schema(props.model || {}, { collection: props.table });
+    this.Model = db.model(props.table, Schema);
   }
   del (schema) {
     return this.Model.deleteOne(schema)
+  }
+  getList ({ pageSize = 10, pageNum = 1, query = {} }) {
+    pageSize = 1*pageSize
+    pageNum = 1*pageNum
+    if (pageNum === 0) {
+      pageNum = 1
+    }
+    pageNum--
+    return this.Model.find({}).skip(pageNum * pageSize).limit(pageSize)
+  }
+  getCount () {
+    return this.Model.find().count()
   }
   async find (schema) {
     schema.expires = { $gt: +new Date() }
@@ -47,6 +55,12 @@ class Db {
     //   }
     // })
     return this.Model.create(data)
+  }
+  update (id, data) {
+    return this.Model.updateOne({ _id: id }, data)
+  }
+  insertMany (data) {
+    return this.Model.insertMany(data)
   }
 }
 

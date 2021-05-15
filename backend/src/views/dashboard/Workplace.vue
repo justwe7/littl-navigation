@@ -7,13 +7,13 @@
         </div>
         <div class="content">
           <div class="content-title">
-            {{ timeFix }}，{{ user.name }}<span class="welcome-text">，{{ welcome }}</span>
+            {{ timeFix }}，{{ user.name }}<!-- <span class="welcome-text">，{{ welcome }}</span> -->
           </div>
-          <div>前端工程师 | 蚂蚁金服 - 某某某事业群 - VUE平台</div>
+          <!-- <div>前端工程师 | 蚂蚁金服 - 某某某事业群 - VUE平台</div> -->
         </div>
       </div>
     </template>
-    <template v-slot:extraContent>
+    <!-- <template v-slot:extraContent>
       <div class="extra-content">
         <div class="stat-item">
           <a-statistic title="项目数" :value="56" />
@@ -25,9 +25,9 @@
           <a-statistic title="项目访问" :value="2223" />
         </div>
       </div>
-    </template>
+    </template> -->
 
-    <div>
+    <div v-if="0">
       <a-row :gutter="24">
         <a-col :xl="16" :lg="24" :md="24" :sm="24" :xs="24">
           <a-card

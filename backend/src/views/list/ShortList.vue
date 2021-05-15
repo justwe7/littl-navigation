@@ -2,7 +2,7 @@
   <page-header-wrapper>
     <a-card :bordered="false">
       <div class="table-page-search-wrapper">
-        <a-form layout="inline">
+        <a-form layout="inline" v-if="0">
           <a-row :gutter="48">
             <!-- <a-col :md="8" :sm="24">
               <a-form-item label="规则编号">
@@ -84,7 +84,6 @@
         rowKey="key"
         :columns="columns"
         :data="loadData"
-        :pageSize="144"
         :alert="false"
       >
         <!-- showPagination="auto" -->
@@ -92,6 +91,9 @@
         <span slot="serial" slot-scope="text, record, index">
           {{ index + 1 }}
         </span>
+        <a slot="_id" slot-scope="_id" :href="`https://t.littl.cn/`+_id" target="_blank">
+          https://t.littl.cn/{{ _id }}
+        </a>
         <span slot="status" slot-scope="text">
           <a-badge :status="text | statusTypeFilter" :text="text | statusFilter" />
         </span>
@@ -124,7 +126,7 @@
 <script>
 import moment from 'moment'
 import { STable, Ellipsis } from '@/components'
-import { getRoleList, getServiceList, updateItem } from '@/api/manage'
+import { getRoleList, getShortList, updateItem } from '@/api/manage'
 
 import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './modules/CreateForm'
@@ -135,21 +137,36 @@ const columns = [
     scopedSlots: { customRender: 'serial' }
   },
   {
-    title: '网站名称',
-    dataIndex: 'name'
+    title: '短链',
+    dataIndex: '_id',
+    scopedSlots: { customRender: '_id' }
+
+    // customRender: (id) => `https://t.littl.cn/${id}`
   },
   {
-    title: '网址',
+    title: '源网址',
     dataIndex: 'url'
     // scopedSlots: { customRender: 'description' }
   },
   {
-    title: '类型',
-    dataIndex: 'type',
-    // sorter: true,
-    // needTotal: true,
-    customRender: (type) => { return { 0: '综合', 1: '科技', 2: '购物', 3: '社交', 4: '娱乐', 5: '工具' }[type] }
+    title: '过期时间',
+    dataIndex: 'expires',
+    customRender: (timestamp) => moment(new Date(timestamp)).format('YYYY-MM-DD hh:mm:ss')
+    // scopedSlots: { customRender: 'description' }
   },
+  {
+    title: '创建日期',
+    dataIndex: 'createTime',
+    customRender: (timestamp) => moment(new Date(timestamp)).format('YYYY-MM-DD hh:mm:ss')
+    // scopedSlots: { customRender: 'description' }
+  }
+  // {
+  //   title: '状态',
+  //   // dataIndex: 'type',
+  //   // sorter: true,
+  //   // needTotal: true,
+  //   customRender: (type) => { return { 0: '综合', 1: '科技', 2: '购物', 3: '社交', 4: '娱乐', 5: '工具' }[type] }
+  // },
   // {
   //   title: '状态',
   //   dataIndex: 'status',
@@ -160,12 +177,12 @@ const columns = [
   //   dataIndex: 'updatedAt',
   //   sorter: true
   // },
-  {
-    title: '操作',
-    dataIndex: 'action',
-    width: '150px',
-    scopedSlots: { customRender: 'action' }
-  }
+  // {
+  //   title: '操作',
+  //   dataIndex: 'action',
+  //   width: '150px',
+  //   scopedSlots: { customRender: 'action' }
+  // }
 ]
 
 const statusMap = {
@@ -210,15 +227,15 @@ export default {
       loadData: parameter => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
-        return getServiceList(requestParameters)
+        return getShortList(requestParameters)
           .then(res => {
             console.log(res)
             return {
-              pageNo: 1,
-              // pageSize: 10,
-              totalCount: 144,
-              totalPage: 15,
-              data: res.data
+              pageNum: res.data.pageNum,
+              pageSize: res.data.totalCount,
+              totalCount: res.data.totalCount,
+              // totalPage: 15,
+              data: res.data.list
             }
             // return res.result
           })
