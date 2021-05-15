@@ -197,7 +197,7 @@ export default {
     }),
     currentUser () {
       return {
-        name: 'Serati Ma',
+        name: 'Ying Zheng',
         avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png'
       }
     },

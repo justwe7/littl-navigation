@@ -29,7 +29,7 @@ export function getRoleList (parameter) {
 
 export function getServiceList (parameter) {
   return request({
-    url: api.service,
+    url: '/app/sss',
     method: 'get',
     params: parameter
   })

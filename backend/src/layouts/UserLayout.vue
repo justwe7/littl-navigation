@@ -6,7 +6,7 @@
         <select-lang class="select-lang-trigger" />
       </div>
       <div class="user-layout-content">
-        <div class="top">
+        <!-- <div class="top">
           <div class="header">
             <a href="/">
               <img src="~@/assets/logo.svg" class="logo" alt="logo">
@@ -16,11 +16,11 @@
           <div class="desc">
             {{ $t('layouts.userLayout.title') }}
           </div>
-        </div>
+        </div> -->
 
         <router-view />
 
-        <div class="footer">
+        <!-- <div class="footer">
           <div class="links">
             <a href="_self">帮助</a>
             <a href="_self">隐私</a>
@@ -29,7 +29,7 @@
           <div class="copyright">
             Copyright &copy; 2018 vueComponent
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
