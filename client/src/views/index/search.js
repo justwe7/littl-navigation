@@ -4,6 +4,13 @@ const oInput = $('#key-ipt');
 const oForecastList = $('#forecast');
 let sugIndex = -1;
 let sugList = [];
+$.ajax({
+  type: "get",
+  url: "http://localhost:7778/v1/nav/list",
+  success: function (response) {
+      console.log(response)
+  }
+});
 
 /* 联想 */
 function suggestList (event, words) {

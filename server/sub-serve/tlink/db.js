@@ -34,7 +34,7 @@ class Db {
       pageNum = 1
     }
     pageNum--
-    return this.Model.find({}).skip(pageNum * pageSize).limit(pageSize)
+    return this.Model.find(query).skip(pageNum * pageSize).limit(pageSize)
   }
   getCount () {
     return this.Model.find().count()
