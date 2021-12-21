@@ -1,0 +1,140 @@
+.f-clearfix {
+  &:after {
+    display: block;
+    content: "";
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+  }
+}
+
+.f-fl {
+  float: left;
+}
+
+.f-fr {
+  float: right;
+}
+
+.f-center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.f-inline-block {
+  display: inline-block;
+}
+
+// text-align
+.f-text-center {
+  text-align: center
+}
+
+.f-text-left {
+  text-align: left
+}
+
+.f-text-right {
+  text-align: right
+}
+
+.f-width-all {
+  width: 100%;
+}
+
+.f-height-all {
+  height: 100%;
+}
+
+.f-disabled {
+  color: #ccc;
+}
+
+.f-word-break {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.f-img-cover {
+  @extend .f-width-all;
+  @extend .f-height-all;
+  object-fit: cover;
+}
+
+.f-cursor-pointer {
+  cursor: pointer;
+}
+
+// margin-top var
+$mtArr: 10 20 30;
+@each $mt in $mtArr {
+  .f-mt-#{$mt} {
+    margin-top: #{$mt}px;
+  }
+}
+
+// margin-right var
+$mrArr: 5 10 20;
+@each $mr in $mrArr {
+  .f-mr-#{$mr} {
+    margin-right: #{$mr}px;
+  }
+}
+
+// margin-bottom var
+$mbArr: 0 10;
+@each $mb in $mbArr {
+  .f-mb-#{$mb} {
+    margin-bottom: #{$mb}px;
+  }
+}
+
+// margin-left var
+$mlArr: 5 10 20;
+@each $ml in $mlArr {
+  .f-ml-#{$ml} {
+    margin-left: #{$ml}px;
+  }
+}
+
+// padding-top var
+$ptArr: 10 30;
+@each $pt in $ptArr {
+  .f-pt-#{$pt} {
+    padding-top: #{$pt}px;
+  }
+}
+
+// padding-bottom var
+$pbArr: 10 30;
+@each $pb in $pbArr {
+  .f-pb-#{$pb} {
+    padding-bottom: #{$pb}px;
+  }
+}
+
+// padding var
+$pdArr: 10 15;
+@each $p in $pdArr {
+  .f-pd-#{$p} {
+    padding: #{$p}px;
+  }
+}
+
+//width var
+$widthArr: 60 90 100 150 200 220 300 450;
+@each $w in $widthArr {
+  .f-width-#{$w} {
+    width: #{$w}px;
+  }
+}
+
+//height var
+$heightArr: 32 90 100 150 200 220 300;
+@each $h in $heightArr {
+  .f-height-#{$h} {
+    height: #{$h}px;
+  }
+}

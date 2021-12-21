@@ -1,82 +1,41 @@
 {
   "name": "littl-navigation",
-  "version": "1.0.0",
-  "description": "导航",
-  "main": "index.js",
+  "version": "2.0.0",
+  "description": "hl",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development npx webpack serve --mode=development --config ./client/build/webpack.config.js",
-    "dev:all": "concurrently \"npm run dev:server\" \"npm run dev\"",
-    "dev:server": "nodemon server",
-    "build": "cross-env NODE_ENV=production npx webpack --mode=production --config ./client/build/webpack.config.js",
-    "start": "pm2 start pm2.config.json",
-    "stop": "pm2 stop pm2.config.json",
-    "restart": "pm2 restart pm2.config.json"
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview"
+  },
+  "main": ".eslintrc.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "axios": "~0.24.0",
+    "element-plus": "~1.2.0-beta.1",
+    "vue": "^3.2.16",
+    "vue-router": "~4.0.12"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.9.3",
+    "sass": "~1.43.4",
+    "typescript": "^4.4.3",
+    "unplugin-vue-components": "~0.17.0",
+    "vite": "^2.6.4",
+    "vue-tsc": "^0.3.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/justwe7/littl-navigation.git"
   },
-  "keywords": [],
+  "keywords": [
+    "littl.cn"
+  ],
   "author": "justwe7 <ilihuaxi@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/justwe7/littl-navigation/issues"
   },
-  "homepage": "https://github.com/justwe7/littl-navigation#readme",
-  "dependencies": {
-    "co-wechat-api": "^3.11.0",
-    "crypto": "^1.0.1",
-    "dayjs": "~1.10.4",
-    "jquery": "^3.5.1",
-    "mongoose": "~5.12.3",
-    "request": "^2.88.2",
-    "sha1": "^1.1.1",
-    "urijs": "^1.19.3",
-    "uuid": "^8.3.2"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.12.10",
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "autoprefixer": "^10.2.1",
-    "babel-eslint": "^10.1.0",
-    "babel-loader": "^8.2.2",
-    "clean-webpack-plugin": "^3.0.0",
-    "concurrently": "^5.3.0",
-    "core-js": "^3.8.2",
-    "cross-env": "^7.0.3",
-    "css-loader": "^5.0.1",
-    "css-minimizer-webpack-plugin": "^1.2.0",
-    "eslint": "^7.18.0",
-    "eslint-config-standard": "^16.0.2",
-    "eslint-friendly-formatter": "^4.0.1",
-    "eslint-loader": "^4.0.2",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "file-loader": "^6.2.0",
-    "friendly-errors-webpack-plugin": "~1.7.0",
-    "html-loader": "^1.3.2",
-    "html-webpack-plugin": "^5.0.0-beta.5",
-    "koa": "^2.13.0",
-    "koa-bodyparser": "^4.3.0",
-    "koa-router": "^10.0.0",
-    "koa-static": "^5.0.0",
-    "mini-css-extract-plugin": "^1.3.4",
-    "postcss": "^8.2.4",
-    "postcss-import": "^14.0.0",
-    "postcss-loader": "^4.1.0",
-    "postcss-url": "^10.1.1",
-    "resolve-url-loader": "^3.1.2",
-    "sass": "^1.32.5",
-    "sass-loader": "^10.1.1",
-    "shortid": "~2.2.16",
-    "style-loader": "^2.0.0",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "url-loader": "^4.1.1",
-    "webpack": "^5.15.0",
-    "webpack-cli": "^4.4.0",
-    "webpack-dev-server": "^3.11.2"
-  }
+  "homepage": "https://github.com/justwe7/littl-navigation#readme"
 }

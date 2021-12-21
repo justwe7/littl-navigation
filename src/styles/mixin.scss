@@ -1,0 +1,74 @@
+%arrow-right {
+  position: relative;
+  &:after {
+      content: " ";
+      display: inline-block;
+      height: 6px;
+      width: 6px;
+      transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+      position: absolute;
+      top: 50%;
+      margin-top: -4px;
+      right: 2px;
+      border-width: 2px 2px 0px 0px;
+      border-color: rgb(200, 200, 205);
+      border-style: solid;
+  }
+}
+
+%clearfix {
+  //清除浮动
+  &:after {
+      display: block;
+      content: "";
+      height: 0;
+      clear: both;
+      overflow: hidden;
+      visibility: hidden;
+  }
+}
+
+%wordbreak {
+  //文本自动换行
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+%textoverflow {
+  //单行文本缩略
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+%textspace {
+  //文本两端对齐
+  word-spacing: -1em;
+  text-align: justify;
+  text-justify: distribute-all-lines;
+  text-align-last: justify;
+  -moz-text-align-last: justify;
+  -webkit-text-align-last: justify;
+  &::after {
+      content: "";
+      display: inline-block;
+      width: 100%;
+      overflow: hidden;
+      height: 0;
+  }
+}
+
+%centerblock {
+  //设置垂直居中
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+%centercontent {
+  //设置内容居中
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
