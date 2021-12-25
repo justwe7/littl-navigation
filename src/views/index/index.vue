@@ -5,66 +5,8 @@
 <el-container>
   <el-aside width="200px" class="bg-gradient-to-r from-cyan-500 to-blue-500 h-screen">222</el-aside>
   <el-main class="bg-stone-100 bg-no-repeat bg-fixed bg-[url('https://tailwindcss.com/_next/static/media/docs@tinypng.61f4d3334a6d245fc2297517c87ae044.png')]">
-    <div>
-      <el-dropdown>
-    <el-button type="primary">
-      Dropdown List<el-icon class="el-icon--right"><arrow-down /></el-icon>
-    </el-button>
-    <template #dropdown>
-      <el-dropdown-menu>
-        <el-dropdown-item>Action 1</el-dropdown-item>
-        <el-dropdown-item>Action 2</el-dropdown-item>
-        <el-dropdown-item>Action 3</el-dropdown-item>
-        <el-dropdown-item>Action 4</el-dropdown-item>
-        <el-dropdown-item>Action 5</el-dropdown-item>
-      </el-dropdown-menu>
-    </template>
-  </el-dropdown>
-  <el-dropdown split-button type="primary" @click="handleClick">
-    Dropdown List
-    <template #dropdown>
-      <el-dropdown-menu>
-        <el-dropdown-item>Action 1</el-dropdown-item>
-        <el-dropdown-item>Action 2</el-dropdown-item>
-        <el-dropdown-item>Action 3</el-dropdown-item>
-        <el-dropdown-item>Action 4</el-dropdown-item>
-        <el-dropdown-item>Action 5</el-dropdown-item>
-      </el-dropdown-menu>
-    </template>
-  </el-dropdown>
-      <el-form :inline="true" :model="formInline" class="text-center pt-20">
-        <el-form-item class="p-0">
-          <el-autocomplete
-            v-model="state"
-            class="w-1/2 md:w-96"
-            :fetch-suggestions="querySearchAsync"
-            placeholder="输入亿点东西"
-            @select="handleSelect"
-          />
-        </el-form-item>
-        <!-- <el-form-item label="Activity zone">
-          <el-select v-model="formInline.region" placeholder="Activity zone">
-            <el-option label="Zone one" value="shanghai"></el-option>
-            <el-option label="Zone two" value="beijing"></el-option>
-          </el-select>
-        </el-form-item> -->
-        <el-form-item>
-          <!-- <el-button type="primary">搜索</el-button> -->
-          <el-dropdown split-button type="primary" @click="handleClick">
-            999
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item>Action 1</el-dropdown-item>
-                <el-dropdown-item>Action 2</el-dropdown-item>
-                <el-dropdown-item>Action 3</el-dropdown-item>
-                <el-dropdown-item>Action 4</el-dropdown-item>
-                <el-dropdown-item>Action 5</el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
-        </el-form-item>
-      </el-form>
-
+    <div class="md:pt-20">
+      <Search></Search>
     </div>
     <!-- <div class="g-header">
       <div class="m-main">微 · 导航
@@ -172,66 +114,63 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
-import { ArrowDown } from '@element-plus/icons-vue'
+import Search from './components/search.vue'
+// import { ArrowDown } from '@element-plus/icons-vue'
 export default defineComponent({
   components: {
-    ArrowDown,
+    Search
   },
   setup() {
-    const links = ref([])
-    const loadAll = () => {
-      return [
-        { value: 'vue', link: 'https://github.com/vuejs/vue' },
-        { value: 'element', link: 'https://github.com/ElemeFE/element' },
-        { value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
-        { value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui' },
-        { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
-        { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
-        { value: 'babel', link: 'https://github.com/babel/babel' },
-      ]
-    }
-    let timeout: number
-    const querySearchAsync = (queryString: string, cb: (arg: any) => void) => {
-      const results = queryString
-        ? links.value.filter(createFilter(queryString))
-        : links.value
+    // const links = ref([])
+    // const loadAll = () => {
+    //   return [
+    //     { value: 'vue', link: 'https://github.com/vuejs/vue' },
+    //     { value: 'element', link: 'https://github.com/ElemeFE/element' },
+    //     { value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
+    //     { value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui' },
+    //     { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
+    //     { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
+    //     { value: 'babel', link: 'https://github.com/babel/babel' },
+    //   ]
+    // }
+    // let timeout: number
+    // const querySearchAsync = (queryString: string, cb: (arg: any) => void) => {
+    //   const results = queryString
+    //     ? links.value.filter(createFilter(queryString))
+    //     : links.value
 
-      clearTimeout(timeout)
-      timeout = setTimeout(() => {
-        cb(results)
-      }, 3000 * Math.random())
-    }
-    const createFilter = (queryString: string) => {
-      return (restaurant) => {
-        return (
-          restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) ===
-          0
-        )
-      }
-    }
-    const handleSelect = (item) => {
-      console.log(item)
-    }
-    onMounted(() => {
-      links.value = loadAll()
-    })
-    return {
-      formInline: {
-        user: '',
-        region: '',
-      },
-      links,
-      state: ref(''),
-      querySearchAsync,
-      createFilter,
-      loadAll,
-      handleSelect,
-    }
+    //   clearTimeout(timeout)
+    //   timeout = setTimeout(() => {
+    //     cb(results)
+    //   }, 3000 * Math.random())
+    // }
+    // const createFilter = (queryString: string) => {
+    //   return (restaurant) => {
+    //     return (
+    //       restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) ===
+    //       0
+    //     )
+    //   }
+    // }
+    // const handleSelect = (item) => {
+    //   console.log(item)
+    // }
+    // onMounted(() => {
+    //   links.value = loadAll()
+    // })
+    // return {
+    //   links,
+    //   state: ref(''),
+    //   querySearchAsync,
+    //   createFilter,
+    //   loadAll,
+    //   handleSelect,
+    // }
   },
   methods: {
-    handleClick (e) {
-      console.log(e)
-    }
+    // handleClick (e) {
+    //   console.log(e)
+    // }
   },
 })
 </script>
