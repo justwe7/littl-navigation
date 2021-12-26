@@ -1,9 +1,10 @@
 <template>
   <el-row :gutter="0" class="w-full md:w-2/3 m-auto">
-    <el-col :span="16">
+    <el-col :span="20">
       <el-autocomplete
         v-model="wd"
         class="w-full"
+        clearable
         :trigger-on-focus="false"
         :fetch-suggestions="querySearchAsync"
         placeholder="输入关键词"
@@ -11,16 +12,12 @@
         @select="handleCheckWords"
       />
     </el-col>
-    <el-col :span="8">
+    <el-col :span="4">
       <el-dropdown split-button type="primary" @click="handleClick" @command="handleChangeTarget">
         {{ searchEngine.buttonText }}
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item :command="item" v-for="item in searchEngineList">{{ item.name }}</el-dropdown-item>
-            <!-- <el-dropdown-item>Action 2</el-dropdown-item>
-            <el-dropdown-item>Action 3</el-dropdown-item>
-            <el-dropdown-item>Action 4</el-dropdown-item>
-            <el-dropdown-item>Action 5</el-dropdown-item> -->
           </el-dropdown-menu>
         </template>
       </el-dropdown></el-col>
@@ -51,18 +48,23 @@ const searchEngineList: SearchEngineItem[] = [
   },
   {
     name: 'Google',
-    url: 'https://www.baidu.com/s?wd=$w$',
+    url: 'https://www.google.com/search?wd=$w$',
     buttonText: 'Google',
   },
   {
-    name: '中译英',
-    url: 'https://www.baidu.com/s?wd=$w$',
+    name: '谷歌中译英',
+    url: 'https://translate.google.com/?hl=zh-CN&sl=zh-CN&tl=en&op=translate&text=$w$',
     buttonText: '翻译为英文',
   },
   {
-    name: '英译中',
-    url: 'https://www.baidu.com/s?wd=$w$',
+    name: '谷歌英译中',
+    url: 'https://translate.google.com/?sl=en&tl=zh-CN&op=translate&hl=zh-CN&text=$w$',
     buttonText: '翻译为中文',
+  },
+  {
+    name: '智能翻译',
+    url: 'https://fanyi.baidu.com/translate?lang=auto2zh&query=$w$',
+    buttonText: '百度翻译',
   }
 ]
 
@@ -130,4 +132,20 @@ export default defineComponent({
   },
 })
 </script>
-
+<style>
+.el-dropdown__caret-button {
+  margin-left: 0 !important;
+}
+.el-button-group {
+  padding-left: 5px;
+}
+.el-button-group>.el-button:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  min-width: 10rem;
+}
+.el-button-group>.el-button:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+</style>

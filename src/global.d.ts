@@ -1,3 +1,3 @@
 interface Window {
-  _JSONPCallBack: void(0);
+  _JSONPCallBack: any;
 }
