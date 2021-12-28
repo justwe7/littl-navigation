@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <!-- <el-aside width="200px" class="bg-gradient-to-r from-cyan-500 to-blue-500 h-screen">222</el-aside> -->
-    <el-main class="bg-stone-100 bg-no-repeat bg-fixed bg-[url('https://tailwindcss.com/_next/static/media/docs@tinypng.61f4d3334a6d245fc2297517c87ae044.png')]">
+    <el-main class="bg-stone-100 dark:bg-gray-900 h-screen bg-no-repeat bg-fixed bg-[url('https://tailwindcss.com/_next/static/media/docs@tinypng.61f4d3334a6d245fc2297517c87ae044.png')]">
       <div class="md:pt-20">
         <Search></Search>
         <TabNav></TabNav>

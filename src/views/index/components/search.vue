@@ -48,7 +48,7 @@ const searchEngineList: SearchEngineItem[] = [
   },
   {
     name: 'Google',
-    url: 'https://www.google.com/search?wd=$w$',
+    url: 'https://www.google.com/search?q=$w$',
     buttonText: 'Google',
   },
   {
@@ -142,7 +142,7 @@ export default defineComponent({
 .el-button-group>.el-button:first-child {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  min-width: 10rem;
+  min-width: 8rem;
 }
 .el-button-group>.el-button:last-child {
   border-top-left-radius: 0;

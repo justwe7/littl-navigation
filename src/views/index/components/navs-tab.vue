@@ -1,5 +1,5 @@
 <template>
-  <el-tabs class="w-3/4 m-auto mt-20" v-model="current" @tab-click="handleClick">
+  <el-tabs class="w-3/4 m-auto mt-20" v-model="current">
     <el-tab-pane :label="item.text" :name="item.type" v-for="item in tabData">
       <div class="h-52 grid grid-rows-4 grid-flow-col gap-4">
         <a class="leading-loose text-center hover:underline hover:text-cyan-800 bg-neutral-100 rounded-md" :href="site.url" target="_blank" v-for="site in item.children">{{ site.name }}</a>
@@ -177,9 +177,9 @@ export default defineComponent({
     }
   },
   methods: {
-    handleClick(tab, event) {
-      console.log(tab, event)
-    },
+    // handleClick(tab, event) {
+    //   console.log(tab, event)
+    // },
   },
 })
 </script>
